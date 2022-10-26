@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="button_name_array">
+        <item>All</item>
+        <item>Animal</item>
+        <item>Flower</item>
+        <item>Mountain</item>
+        <item>Waterfall</item>
+    </string-array>
+</resources>

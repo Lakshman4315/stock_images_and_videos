@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">First Project</string>
+    <string name="animals">animals</string>
+    <string name="video">Video</string>
+    <string name="image">Image</string>
+    <string name="apiKey">30318797-739da6e504408acb0a125c7d3</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

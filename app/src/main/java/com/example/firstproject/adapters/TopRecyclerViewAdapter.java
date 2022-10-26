@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.firstproject.ImageView.ImageFragment;
-import com.example.firstproject.Model.TopRecyclerViewModel;
+import com.example.firstproject.ImageView.TopRecyclerViewModel;
 import com.example.firstproject.R;
 
 import java.util.ArrayList;

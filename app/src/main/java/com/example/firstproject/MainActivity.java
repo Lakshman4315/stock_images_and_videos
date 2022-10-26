@@ -1,19 +1,12 @@
 package com.example.firstproject;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.firstproject.ImageView.ImageFragment;
-import com.example.firstproject.Model.TopRecyclerViewModel;
-import com.example.firstproject.adapters.TopRecyclerViewAdapter;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 

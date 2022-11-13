@@ -23,8 +23,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText email,password;
     Button loginButton;
 
-    Boolean succesfulLogin=false;
-
     Dao dao;
 
     private SharedPreferences myPreferences;
@@ -35,9 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        SharedPreferences.Editor preferencesEditor = myPreferences.edit();
-        preferencesEditor.putBoolean(LOGGED_IN, succesfulLogin);
-        preferencesEditor.apply();
+       
 
     }
 
@@ -60,15 +56,22 @@ public class LoginActivity extends AppCompatActivity {
 //        }
 //    }
 
+    private void updateLoginSharedCache(){
+        SharedPreferences.Editor preferencesEditor = myPreferences.edit();
+        preferencesEditor.putBoolean(LOGGED_IN, true);
+        preferencesEditor.apply();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         myPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
-        if(myPreferences.getBoolean(LOGGED_IN, succesfulLogin)){
+        if(myPreferences.getBoolean(LOGGED_IN, false)){
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
+            updateLoginSharedCache(); 
             finish();
         }
 
@@ -89,12 +92,10 @@ public class LoginActivity extends AppCompatActivity {
 //                    if(dao.emailValidate(Email)){
                         if(dao.login(Email,pass)){
                             Toast.makeText(this,"Login Successful",Toast.LENGTH_SHORT).show();
-                            succesfulLogin = true;
                             startActivity(new Intent(this, MainActivity.class));
                             finish();
                         }else{
                             Toast.makeText(this,"Email or Password is incorrect",Toast.LENGTH_SHORT).show();
-                            succesfulLogin = false;
                         }
 //                    }else{
 //                        Toast.makeText(this,"Email does not exists",Toast.LENGTH_SHORT).show();

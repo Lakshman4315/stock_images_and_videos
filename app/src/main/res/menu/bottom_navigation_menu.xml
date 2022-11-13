@@ -11,4 +11,9 @@
         android:title="@string/video"
         android:icon="@drawable/ic_baseline_ondemand_video_24"/>
 
+    <item
+        android:id="@+id/lobby"
+        android:title="Lobby"
+        android:icon="@drawable/drawer"/>
+
 </menu>

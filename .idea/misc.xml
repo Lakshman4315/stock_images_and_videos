@@ -3,17 +3,31 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/drawable/ic_baseline_help_24.xml" value="0.161" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.153" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/drawable/image_round_corner.xml" value="0.153" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/drawable/rounded_corners.xml" value="0.157" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout-v26/activity_main.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/activity_help.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/activity_main2.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/activity_policy.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_image.xml" value="0.1" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_item.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_item2.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_item_list.xml" value="0.25" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_item_list2.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_lobby.xml" value="0.22" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_video.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/image_list_item.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/item_top_recycler_view.xml" value="0.1" />
-        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/video_item_top_recycler_view.xml" value="0.1170940170940171" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/video_list_item.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/menu/actionbar_menu.xml" value="0.1" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.22" />
       </map>
     </option>
   </component>

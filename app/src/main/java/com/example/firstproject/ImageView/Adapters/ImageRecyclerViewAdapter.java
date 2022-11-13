@@ -1,8 +1,6 @@
-package com.example.firstproject.ImageView;
+package com.example.firstproject.ImageView.Adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,17 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.firstproject.ImageView.Model.ImageRecyclerVIewModel;
 import com.example.firstproject.R;
 
 import java.util.ArrayList;
-//mlh
 public class ImageRecyclerViewAdapter extends RecyclerView.Adapter<ImageRecyclerViewAdapter.ViewHolder> {
 
     private final ArrayList<ImageRecyclerVIewModel> ImageUrlArray;
 
     private Context context;
 
-    ImageRecyclerViewAdapter(Context context, ArrayList<ImageRecyclerVIewModel> ImageUrlArray){
+    public ImageRecyclerViewAdapter(Context context, ArrayList<ImageRecyclerVIewModel> ImageUrlArray){
         this.context = context;
         this.ImageUrlArray = ImageUrlArray;
     }

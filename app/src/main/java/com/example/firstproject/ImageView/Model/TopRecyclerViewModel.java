@@ -1,4 +1,4 @@
-package com.example.firstproject.ImageView;
+package com.example.firstproject.ImageView.Model;
 
 public class TopRecyclerViewModel {
 

@@ -15,8 +15,7 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:id="@+id/toolBar"
-            app:menu="@menu/actionbar_menu"/>
+            android:id="@+id/toolBar"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -33,6 +32,7 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="56dp"
+        android:focusedByDefault="true"
         tools:ignore="MissingConstraints"
         app:menu="@menu/bottom_navigation_menu"
         android:layout_alignParentBottom="true"/>

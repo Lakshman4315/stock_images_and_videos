@@ -1,4 +1,4 @@
-package com.example.firstproject.adapters;
+package com.example.firstproject.ImageView.Adapters;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.firstproject.ImageView.ImageFragment;
-import com.example.firstproject.ImageView.TopRecyclerViewModel;
+import com.example.firstproject.ImageView.Model.TopRecyclerViewModel;
 import com.example.firstproject.R;
 
 import java.util.ArrayList;

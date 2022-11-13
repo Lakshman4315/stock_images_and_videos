@@ -18,8 +18,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.firstproject.ImageView.Adapters.ImageRecyclerViewAdapter;
+import com.example.firstproject.ImageView.Adapters.TopRecyclerViewAdapter;
+import com.example.firstproject.ImageView.Model.ImageRecyclerVIewModel;
+import com.example.firstproject.ImageView.Model.TopRecyclerViewModel;
 import com.example.firstproject.R;
-import com.example.firstproject.adapters.TopRecyclerViewAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -84,7 +87,7 @@ public class ImageFragment extends Fragment {
         recyclerView.setAdapter(imageRecyclerViewAdapter);
 
 //        new ApiCall().apiCall(getContext(), ImageUrlArray, valueOfq);
-        ImageUrlArray.clear();
+//        ImageUrlArray.clear();
         apiCall(valueOfq,getContext());
 
         return view;
@@ -116,7 +119,7 @@ public class ImageFragment extends Fragment {
 
     public void apiCall(String s,Context context){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
-        String imageUrl = "https://pixabay.com/api/?key=30318797-739da6e504408acb0a125c7d3&q"+s;
+        String imageUrl = "https://pixabay.com/api/?key=30318797-739da6e504408acb0a125c7d3&q"+s+"&per_page=100";
         @SuppressLint("NotifyDataSetChanged") JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, imageUrl,
                 null,
                 response -> {

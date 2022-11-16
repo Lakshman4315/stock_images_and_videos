@@ -1,5 +1,6 @@
 package com.example.firstproject.ImageView.Adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.firstproject.ImageView.Model.ImageRecyclerVIewModel;
+import com.example.firstproject.MainActivity;
 import com.example.firstproject.R;
 
 import java.util.ArrayList;
@@ -53,13 +55,33 @@ public class ImageRecyclerViewAdapter extends RecyclerView.Adapter<ImageRecycler
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
-        }
 
 
-
-//        public void bind(ImageRecyclerVIewModel currentData) {
+//            AlertDialog.Builder imageDialog= new AlertDialog.Builder(context.getApplicationContext());
+//            ImageView showImage = new ImageView(context.getApplicationContext());
+//            imageDialog.setView(showImage);
 //
-//            Glide.with(context).load(currentData).into(imageView);
-//        }
+//
+//            imageView.setOnClickListener(new DoubleClickListener() {
+//                @Override
+//                protected void onDoubleClick(View view) {
+//                    imageDialog.show();
+//                }
+//            });
+
+        }
     }
+}
+
+abstract  class DoubleClickListener implements View.OnClickListener {
+    private static final long DOUBLE_CLICK_TIME_DELTA = 300;
+    private long lastClickTime = 0;
+    @Override
+    public void onClick(View view) {
+        long clickTime = System.currentTimeMillis();
+        if(clickTime-lastClickTime < DOUBLE_CLICK_TIME_DELTA){
+            onDoubleClick(view);
+        }
+    }
+    protected abstract void onDoubleClick(View view);
 }

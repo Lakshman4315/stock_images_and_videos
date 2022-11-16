@@ -22,43 +22,16 @@ public class LoginActivity extends AppCompatActivity {
     MaterialTextView registerView ;
     EditText email,password;
     Button loginButton;
-
-    Boolean succesfulLogin=false;
-
+    Boolean succesfulLogin=true;
     Dao dao;
 
+    public static String sharedPrefFile = "com.example.android.firstProject";
     private SharedPreferences myPreferences;
-    private String sharedPrefFile = "com.example.android.firstProject";
-    String LOGGED_IN = "loggedIn";
+    static final String LOGGED_IN = "loggedIn";
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        SharedPreferences.Editor preferencesEditor = myPreferences.edit();
-        preferencesEditor.putBoolean(LOGGED_IN, succesfulLogin);
-        preferencesEditor.apply();
-
-    }
-
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        SharedPreferences.Editor preferencesEditor = myPreferences.edit();
-//        preferencesEditor.putBoolean(LOGGED_IN, succesfulLogin);
-//        preferencesEditor.apply();
-//
-//    }
-
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        if(myPreferences.getBoolean(LOGGED_IN, succesfulLogin)){
-//            Intent intent = new Intent(this,MainActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
-//    }
+    public static String userSharedPrefFile = "USER_DATA_FILE";
+    private SharedPreferences userPreferences;
+    String userEmail="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +39,13 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         myPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
-        if(myPreferences.getBoolean(LOGGED_IN, succesfulLogin)){
+        if(myPreferences.getBoolean(LOGGED_IN, false)){
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
             finish();
         }
+
+        userPreferences = getSharedPreferences(userSharedPrefFile, MODE_PRIVATE);
 
         init();
 
@@ -81,7 +56,6 @@ public class LoginActivity extends AppCompatActivity {
             String Email = email.getText().toString();
             String pass = password.getText().toString();
 
-
             if(Email.equals("") || pass.equals("")){
                 Toast.makeText(LoginActivity.this,"Please Fill All Information",Toast.LENGTH_SHORT).show();
             }else{
@@ -90,11 +64,15 @@ public class LoginActivity extends AppCompatActivity {
                         if(dao.login(Email,pass)){
                             Toast.makeText(this,"Login Successful",Toast.LENGTH_SHORT).show();
                             succesfulLogin = true;
+                            updateLoginSharedCache();
+                            userEmail = Email;
+                            userLoginSharedCache();
                             startActivity(new Intent(this, MainActivity.class));
                             finish();
                         }else{
                             Toast.makeText(this,"Email or Password is incorrect",Toast.LENGTH_SHORT).show();
                             succesfulLogin = false;
+                            updateLoginSharedCache();
                         }
 //                    }else{
 //                        Toast.makeText(this,"Email does not exists",Toast.LENGTH_SHORT).show();
@@ -104,7 +82,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
 
         registerView.setOnClickListener(view -> {
             Intent registerIntent = new Intent(this, RegisterActivity.class);
@@ -120,7 +97,16 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.login_password);
     }
 
-    public void forgotPasswordListener(View view) {
+    private void updateLoginSharedCache(){
+        SharedPreferences.Editor preferencesEditor = myPreferences.edit();
+        preferencesEditor.putBoolean(LOGGED_IN, succesfulLogin);
+        preferencesEditor.apply();
+    }
+
+    private void userLoginSharedCache(){
+        SharedPreferences.Editor userPreferencesEditor = userPreferences.edit();
+        userPreferencesEditor.putString("USER_EMAIL",userEmail);
+        userPreferencesEditor.apply();
     }
 
 

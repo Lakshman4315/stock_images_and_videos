@@ -5,12 +5,16 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +27,7 @@ import com.example.firstproject.ImageView.Adapters.TopRecyclerViewAdapter;
 import com.example.firstproject.ImageView.Model.ImageRecyclerVIewModel;
 import com.example.firstproject.ImageView.Model.TopRecyclerViewModel;
 import com.example.firstproject.R;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,28 +41,34 @@ public class ImageFragment extends Fragment {
     private TopRecyclerViewAdapter topRecyclerViewAdapter;
     private ArrayList<TopRecyclerViewModel> myButtonNameArray;
     private Context context;
-
-    private String valueOfq ;
+    private MaterialToolbar materialToolbar;
 
     public ImageFragment(){}
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("VALUE_OF_Q",valueOfq);
+//        outState.putString("VALUE_OF_Q",valueOfq);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(savedInstanceState!=null){
-            valueOfq = savedInstanceState.getString("VALUE_OF_Q");
-            Log.d("value",valueOfq);
+//        if(savedInstanceState!=null){
+//            valueOfq = savedInstanceState.getString("VALUE_OF_Q");
+//            Log.d("value",valueOfq);
+//
+//        }else{
+//            valueOfq = "";
+//        }
+    }
 
-        }else{
-            valueOfq = "";
-        }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.actionbar_menu,menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -66,7 +77,11 @@ public class ImageFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_image, container, false);
 
-//        context= getContext();
+        materialToolbar = view.findViewById(R.id.imageViewToolBar);
+//        materialToolbar.setMenu();
+        AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
+        appCompatActivity.setSupportActionBar(materialToolbar);
+//        appCompatActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         myButtonNameArray = new ArrayList<>();
 
@@ -80,40 +95,42 @@ public class ImageFragment extends Fragment {
         initializationTopRecyclerViewData();
 
         RecyclerView recyclerView = view.findViewById(R.id.imageRecyclerView);
-        recyclerView.setHasFixedSize(false);
-        ImageUrlArray = new ArrayList<>();
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        ImageUrlArray = new ArrayList<>();
         imageRecyclerViewAdapter = new ImageRecyclerViewAdapter(getContext(), ImageUrlArray);
         recyclerView.setAdapter(imageRecyclerViewAdapter);
 
-//        new ApiCall().apiCall(getContext(), ImageUrlArray, valueOfq);
-//        ImageUrlArray.clear();
-        apiCall(valueOfq,getContext());
+        apiCall("Mountains",getContext());
+
+        ItemTouchHelper helper = new ItemTouchHelper(
+                new ItemTouchHelper.
+                        SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT){
+
+                    @Override
+                    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                        return false;
+                    }
+
+                    @Override
+                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                        ImageUrlArray.remove(viewHolder.getAbsoluteAdapterPosition());
+                        imageRecyclerViewAdapter.notifyItemRemoved(viewHolder.getAbsoluteAdapterPosition());
+                    }
+                }
+        );
+        helper.attachToRecyclerView(recyclerView);
 
         return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(getArguments()!=null){
-            valueOfq= getArguments().getString("buttonString");
-            Log.d("value",valueOfq);
-        }else{
-            valueOfq = "";
-        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
     private void initializationTopRecyclerViewData() {
         String[] button_name_array = getResources().getStringArray(R.array.button_name_array);
-
         myButtonNameArray.clear();
-
         for (String s : button_name_array) {
             myButtonNameArray.add(new TopRecyclerViewModel(s));
         }
-
         topRecyclerViewAdapter.notifyDataSetChanged();
     }
 
@@ -132,6 +149,7 @@ public class ImageFragment extends Fragment {
                             ImageUrlArray.add(new ImageRecyclerVIewModel(url));
                         }
                         imageRecyclerViewAdapter.notifyDataSetChanged();
+//                        imageRecyclerViewAdapter.notifyAll();
 //                        jsonArray.remove();
 
                     } catch (JSONException e){

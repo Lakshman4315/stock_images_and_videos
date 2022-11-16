@@ -1,6 +1,7 @@
 package com.example.firstproject.login.Database;
 
 
+import android.service.autofill.UserData;
 import android.webkit.SafeBrowsingResponse;
 
 import androidx.lifecycle.LiveData;
@@ -24,6 +25,9 @@ public interface Dao {
 
     @Query("SELECT Exists (Select * from user where EMAIL=:email and PASSWORD =:password )")
     boolean login(String email, String password);
+
+    @Query("Select * from user where EMAIL =:email")
+    List<model> getUserData(String email);
 
     @Insert
     void insert(model data);

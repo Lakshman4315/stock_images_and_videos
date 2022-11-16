@@ -17,7 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MaterialToolbar myToolBar;
+//    private MaterialToolbar myToolBar;
 
     private BottomNavigationView myBottomNavigationBar;
 
@@ -26,29 +26,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myToolBar = findViewById(R.id.toolBar);
-        setSupportActionBar(myToolBar);
+//        myToolBar = findViewById(R.id.toolBar);
+//        setSupportActionBar(myToolBar);
 
         myBottomNavigationBar = findViewById(R.id.bottomNavigation);
         myBottomNavigationBar.setSelected(true);
         bottomNavigationListener();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actionbar_menu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.actionbar_menu,menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.search_icon){
-
-        }else{
-            startActivity(new Intent(this,HelpActivity.class));
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        if(item.getItemId() == R.id.search_icon){
+//
+//        }else{
+//            startActivity(new Intent(this,HelpActivity.class));
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @SuppressLint("NonConstantResourceId")
     private void bottomNavigationListener() {

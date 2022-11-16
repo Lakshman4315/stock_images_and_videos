@@ -8,7 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +24,7 @@ import com.example.firstproject.VideoView.Adapters.TopVideoRecyclerViewAdapter;
 import com.example.firstproject.VideoView.Adapters.VideoRecyclerViewAdapter;
 import com.example.firstproject.VideoView.Model.TopVideoRecyclerViewModel;
 import com.example.firstproject.VideoView.Model.VideoRecyclerViewModel;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,6 +32,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 public class VideoFragment extends Fragment {
+
+    private MaterialToolbar materialToolbar;
 
     private TopVideoRecyclerViewAdapter topVideoRecyclerViewAdapter;
     private ArrayList<TopVideoRecyclerViewModel> myButtonNameArray;
@@ -53,6 +59,11 @@ public class VideoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_video, container, false);
 
+        materialToolbar = view.findViewById(R.id.imageViewToolBar);
+
+        AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
+        appCompatActivity.setSupportActionBar(materialToolbar);
+
         myButtonNameArray = new ArrayList<>();
 
         topVideoRecyclerViewAdapter = new TopVideoRecyclerViewAdapter(getActivity(), myButtonNameArray);
@@ -71,26 +82,28 @@ public class VideoFragment extends Fragment {
         videoRecyclerViewAdapter = new VideoRecyclerViewAdapter(getContext(), VideoUrlArray);
         recyclerView.setAdapter(videoRecyclerViewAdapter);
 
-//        recyclerView.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
-//            @Override
-//            public void onChildViewAttachedToWindow(@NonNull View view) {
-//                StyledPlayerControlView styledPlayerControlView = (StyledPlayerControlView) view.findViewById(R.id.exoPlayerView);
-////                if(styledPlayerControlView != null){
-////                    styledPlayerControlView.
-////                }
-////                ExoPlayer exoPlayer = (ExoPlayer) view.findViewById(R.)
-//            }
-//
-//            @Override
-//            public void onChildViewDetachedFromWindow(@NonNull View view) {
-//
-//            }
-//        });
-
-
         valueOfq = "mountains";
 
         apiCall(valueOfq,getContext());
+
+        // For remove any Item
+        ItemTouchHelper helper = new ItemTouchHelper(
+                new ItemTouchHelper.
+                        SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT){
+
+                    @Override
+                    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                        return false;
+                    }
+
+                    @Override
+                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                        VideoUrlArray.remove(viewHolder.getAbsoluteAdapterPosition());
+                        videoRecyclerViewAdapter.notifyItemRemoved(viewHolder.getAbsoluteAdapterPosition());
+                    }
+                }
+        );
+        helper.attachToRecyclerView(recyclerView);
 
         return view;
     }
@@ -123,8 +136,6 @@ public class VideoFragment extends Fragment {
                             Log.d("url",url);
                         }
                         videoRecyclerViewAdapter.notifyDataSetChanged();
-//                        jsonArray.remove();
-
                     } catch (JSONException e){
                         e.printStackTrace();
                     }

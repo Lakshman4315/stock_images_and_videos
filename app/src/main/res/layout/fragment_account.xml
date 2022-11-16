@@ -1,14 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LobbyView.AccountFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".LobbyView.AccountFragment"
+    android:orientation="vertical"
+    android:background="@color/cardview_dark_background">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/accountToolbar"
+            app:title="@string/account"
+            style="@style/ShapeAppearanceOverlay.MaterialAlertDialog.Material3"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/UserNameText"
+        android:text="@string/username"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        style="@style/MaterialAlertDialog.Material3.Title.Icon"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/USERNAME"
+        android:inputType="textPersonName"
+        android:layout_margin="10dp"
+        android:background="@color/black"
+        android:textColor="@color/white"
+        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/EmailText"
+        android:text="@string/email"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        style="@style/MaterialAlertDialog.Material3.Title.Icon"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/EMAIL"
+        android:layout_margin="10dp"
+        android:background="@color/black"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/phone_number"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        style="@style/MaterialAlertDialog.Material3.Title.Icon"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/PHONE_NUMBER"
+        android:layout_margin="10dp"
+        android:background="@color/black"
+        android:inputType="phone"
+        android:textColor="@color/white"
+        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/password"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        style="@style/MaterialAlertDialog.Material3.Title.Icon"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/PASSWORD"
+        android:layout_margin="10dp"
+        android:background="@color/black"
+        android:textColor="@color/white"
+        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"/>
+
+</LinearLayout>

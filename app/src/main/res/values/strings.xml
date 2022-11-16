@@ -20,4 +20,10 @@
     <string name="your_images">Your Images</string>
     <string name="your_videos">Your Videos</string>
     <string name="user_profile">User Profile</string>
+    <string name="setting">Setting</string>
+    <string name="about_us">About Us</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="username">UserName</string>
 </resources>

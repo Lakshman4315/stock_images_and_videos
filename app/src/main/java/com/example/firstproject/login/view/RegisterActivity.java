@@ -43,7 +43,6 @@ public class RegisterActivity extends AppCompatActivity {
         privacyPolicies.setOnClickListener(view ->
                 startActivity(new Intent(RegisterActivity.this, PolicyActivity.class)));
 
-
     }
 
     void init(){

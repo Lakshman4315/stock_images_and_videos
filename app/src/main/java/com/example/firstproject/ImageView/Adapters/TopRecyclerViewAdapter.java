@@ -1,7 +1,10 @@
 package com.example.firstproject.ImageView.Adapters;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.Fragment;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +22,7 @@ import com.example.firstproject.MainActivity;
 import com.example.firstproject.R;
 
 import java.util.ArrayList;
+import java.util.prefs.Preferences;
 
 public class TopRecyclerViewAdapter extends RecyclerView.Adapter<TopRecyclerViewAdapter.ViewHolder> {
 
@@ -56,15 +60,18 @@ public class TopRecyclerViewAdapter extends RecyclerView.Adapter<TopRecyclerView
             super(itemView);
             mButton = itemView.findViewById(R.id.button);
             mButton.setOnClickListener(view -> {
-//
-//                Bundle bundle = new Bundle();
-//                bundle.putString("buttonString",mButton.getText().toString());
-//                Log.d("key",bundle.getString("buttonString"));
-//                    new fragmentManager().
 
-                MainActivity mainActivity = new MainActivity();
-                mainActivity.getSupportFragmentManager().beginTransaction()
-                        .detach(new ImageFragment()).attach(new ImageFragment()).commit();
+                ImageFragment imageFragment = new ImageFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("buttonString",mButton.getText().toString());
+                imageFragment.setArguments(bundle);
+
+                if(itemView.getContext() instanceof MainActivity){
+                    ((MainActivity)itemView.getContext()).getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container , new ImageFragment()).commit();
+                }
+
+
             });
         }
     }

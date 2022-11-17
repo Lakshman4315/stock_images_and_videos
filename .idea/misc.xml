@@ -16,12 +16,16 @@
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_account.xml" value="0.25" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_email.xml" value="0.1076923076923077" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_image.xml" value="0.1" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_item.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_item2.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_item_list.xml" value="0.25" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_item_list2.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_lobby.xml" value="0.16" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_password.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_phone.xml" value="0.1076923076923077" />
+        <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_user_name.xml" value="0.1" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/fragment_video.xml" value="0.1" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/image_list_item.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/lucky/AndroidStudioProjects/FirstProject/app/src/main/res/layout/item_top_recycler_view.xml" value="0.1" />

@@ -12,6 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.firstproject.LobbyView.AccountChild.EmailFragment;
+import com.example.firstproject.LobbyView.AccountChild.PasswordFragment;
+import com.example.firstproject.LobbyView.AccountChild.PhoneFragment;
+import com.example.firstproject.LobbyView.AccountChild.UserNameFragment;
 import com.example.firstproject.R;
 import com.example.firstproject.login.Database.Dao;
 import com.example.firstproject.login.Database.UserDatabase;
@@ -62,17 +66,55 @@ public class AccountFragment extends Fragment {
         SharedPreferences userPreferences =requireActivity().getSharedPreferences("USER_DATA_FILE",Context.MODE_PRIVATE);
         String email = userPreferences.getString("USER_EMAIL","");
 
+        //fetching user data from database
         Dao dao = UserDatabase.getDatabase(getContext()).dao();
+        String name = dao.getUserData(email).getUsername();
+        String phoneNo = dao.getUserData(email).getPhone_no();
+        String pass = dao.getUserData(email).getPassword();
 
         MaterialTextView userNameTextView = view.findViewById(R.id.USERNAME);
-        userNameTextView.setText("");
+        userNameTextView.setText(name);
+        userNameTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container,new UserNameFragment())
+                        .commit();
+            }
+        });
 
         MaterialTextView emailTextView = view.findViewById(R.id.EMAIL);
         emailTextView.setText(email);
+        emailTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container,new EmailFragment())
+                        .commit();
+            }
+        });
 
+        MaterialTextView phoneTextView = view.findViewById(R.id.PHONE_NUMBER);
+        phoneTextView.setText(phoneNo);
+        phoneTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container,new PhoneFragment())
+                        .commit();
+            }
+        });
 
-
-
+        MaterialTextView passwordTextView = view.findViewById(R.id.PASSWORD);
+        passwordTextView.setText(pass);
+        passwordTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container,new PasswordFragment())
+                        .commit();
+            }
+        });
 
         return view;
     }

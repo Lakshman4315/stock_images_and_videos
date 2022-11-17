@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -43,27 +44,33 @@ public class ImageFragment extends Fragment {
     private Context context;
     private MaterialToolbar materialToolbar;
 
+    String valueOfq;
+
     public ImageFragment(){}
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-//        outState.putString("VALUE_OF_Q",valueOfq);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-//        if(savedInstanceState!=null){
-//            valueOfq = savedInstanceState.getString("VALUE_OF_Q");
-//            Log.d("value",valueOfq);
-//
-//        }else{
-//            valueOfq = "";
-//        }
+        if(getArguments() != null){
+            valueOfq  = getArguments().getString("buttonString","");
+        }else{
+            valueOfq = "";
+        }
+        Log.d("data",valueOfq);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(getArguments() != null){
+            valueOfq  = getArguments().getString("buttonString","");
+        }
+    }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -78,8 +85,8 @@ public class ImageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_image, container, false);
 
         materialToolbar = view.findViewById(R.id.imageViewToolBar);
-//        materialToolbar.setMenu();
         AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
+        assert appCompatActivity != null;
         appCompatActivity.setSupportActionBar(materialToolbar);
 //        appCompatActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -94,6 +101,8 @@ public class ImageFragment extends Fragment {
 
         initializationTopRecyclerViewData();
 
+
+
         RecyclerView recyclerView = view.findViewById(R.id.imageRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -101,12 +110,11 @@ public class ImageFragment extends Fragment {
         imageRecyclerViewAdapter = new ImageRecyclerViewAdapter(getContext(), ImageUrlArray);
         recyclerView.setAdapter(imageRecyclerViewAdapter);
 
-        apiCall("Mountains",getContext());
+        apiCall(valueOfq,getContext());
 
         ItemTouchHelper helper = new ItemTouchHelper(
                 new ItemTouchHelper.
                         SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT){
-
                     @Override
                     public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                         return false;
@@ -136,7 +144,7 @@ public class ImageFragment extends Fragment {
 
     public void apiCall(String s,Context context){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
-        String imageUrl = "https://pixabay.com/api/?key=30318797-739da6e504408acb0a125c7d3&q"+s+"&per_page=100";
+        String imageUrl = "https://pixabay.com/api/?key=30318797-739da6e504408acb0a125c7d3&q="+s+"&per_page=100";
         @SuppressLint("NotifyDataSetChanged") JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, imageUrl,
                 null,
                 response -> {
@@ -149,9 +157,6 @@ public class ImageFragment extends Fragment {
                             ImageUrlArray.add(new ImageRecyclerVIewModel(url));
                         }
                         imageRecyclerViewAdapter.notifyDataSetChanged();
-//                        imageRecyclerViewAdapter.notifyAll();
-//                        jsonArray.remove();
-
                     } catch (JSONException e){
                         e.printStackTrace();
                     }
@@ -159,7 +164,4 @@ public class ImageFragment extends Fragment {
                 });
         requestQueue.add(jsonObjectRequest);
     }
-
-
-
 }

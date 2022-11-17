@@ -22,54 +22,23 @@ public class LoginActivity extends AppCompatActivity {
     MaterialTextView registerView ;
     EditText email,password;
     Button loginButton;
-<<<<<<< HEAD
     Boolean succesfulLogin=true;
-=======
 
->>>>>>> 7f328b839345bb9794691ceb013595965ab49ab6
     Dao dao;
 
     public static String sharedPrefFile = "com.example.android.firstProject";
     private SharedPreferences myPreferences;
     static final String LOGGED_IN = "loggedIn";
 
-<<<<<<< HEAD
     public static String userSharedPrefFile = "USER_DATA_FILE";
     private SharedPreferences userPreferences;
     String userEmail="";
-=======
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
        
 
-    }
-
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        SharedPreferences.Editor preferencesEditor = myPreferences.edit();
-//        preferencesEditor.putBoolean(LOGGED_IN, succesfulLogin);
-//        preferencesEditor.apply();
-//
-//    }
-
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        if(myPreferences.getBoolean(LOGGED_IN, succesfulLogin)){
-//            Intent intent = new Intent(this,MainActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
-//    }
->>>>>>> 7f328b839345bb9794691ceb013595965ab49ab6
-
-    private void updateLoginSharedCache(){
-        SharedPreferences.Editor preferencesEditor = myPreferences.edit();
-        preferencesEditor.putBoolean(LOGGED_IN, true);
-        preferencesEditor.apply();
     }
 
     @Override
@@ -103,22 +72,18 @@ public class LoginActivity extends AppCompatActivity {
 //                    if(dao.emailValidate(Email)){
                         if(dao.login(Email,pass)){
                             Toast.makeText(this,"Login Successful",Toast.LENGTH_SHORT).show();
-<<<<<<< HEAD
+
                             succesfulLogin = true;
                             updateLoginSharedCache();
                             userEmail = Email;
                             userLoginSharedCache();
-=======
->>>>>>> 7f328b839345bb9794691ceb013595965ab49ab6
                             startActivity(new Intent(this, MainActivity.class));
                             finish();
                         }else{
                             Toast.makeText(this,"Email or Password is incorrect",Toast.LENGTH_SHORT).show();
-<<<<<<< HEAD
+
                             succesfulLogin = false;
                             updateLoginSharedCache();
-=======
->>>>>>> 7f328b839345bb9794691ceb013595965ab49ab6
                         }
 //                    }else{
 //                        Toast.makeText(this,"Email does not exists",Toast.LENGTH_SHORT).show();

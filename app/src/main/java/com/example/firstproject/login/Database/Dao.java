@@ -1,9 +1,6 @@
 package com.example.firstproject.login.Database;
 
 
-import android.service.autofill.UserData;
-import android.webkit.SafeBrowsingResponse;
-
 import androidx.lifecycle.LiveData;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -27,7 +24,19 @@ public interface Dao {
     boolean login(String email, String password);
 
     @Query("Select * from user where EMAIL =:email")
-    List<model> getUserData(String email);
+    model getUserData(String email);
+
+    @Query("UPDATE user SET USERNAME =:username where EMAIL =:email")
+    void updateUser(String email,String username);
+
+    @Query("UPDATE user SET Email =:newEmail where EMAIL =:oldEmail")
+    void updateUserEmail(String oldEmail,String newEmail);
+
+    @Query("UPDATE user SET PHONENUMBER =:phone where EMAIL =:oldEmail")
+    void updateUserPhone(String oldEmail,String phone);
+
+    @Query("UPDATE user SET PASSWORD =:pass where EMAIL =:oldEmail")
+    void updateUserPass(String oldEmail,String pass);
 
     @Insert
     void insert(model data);

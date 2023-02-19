@@ -1,6 +1,7 @@
 package com.example.firstproject;
 
 import android.annotation.SuppressLint;
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,7 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-//    private MaterialToolbar myToolBar;
+    private MaterialToolbar myToolBar;
 
     private BottomNavigationView myBottomNavigationBar;
 
@@ -26,38 +27,50 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        myToolBar = findViewById(R.id.toolBar);
-//        setSupportActionBar(myToolBar);
+        myToolBar = findViewById(R.id.toolBar);
+        setSupportActionBar(myToolBar);
+
+        Intent intent = getIntent();
+        if(Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            doMySearch(query);
+        }
 
         myBottomNavigationBar = findViewById(R.id.bottomNavigation);
-        myBottomNavigationBar.setSelected(true);
+        myBottomNavigationBar.getMenu().findItem(R.id.images).setChecked(true);
         bottomNavigationListener();
+
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.actionbar_menu,menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
+    private void doMySearch(String query) {
+        Bundle bundle = new Bundle();
+        bundle.putString("VALUE_OF_Q",query);
+        VideoFragment videoFragment = new VideoFragment();
+        videoFragment.setArguments(bundle);
 
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        if(item.getItemId() == R.id.search_icon){
-//
-//        }else{
-//            startActivity(new Intent(this,HelpActivity.class));
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new VideoFragment()).commit();
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.search_icon){
+            onSearchRequested();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @SuppressLint("NonConstantResourceId")
     private void bottomNavigationListener() {
 
         myBottomNavigationBar.setOnNavigationItemSelectedListener(item -> {
             switch(item.getItemId()) {
-                case R.id.images:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new ImageFragment()).commit();
-                    return true;
                 case R.id.videos:
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, new VideoFragment()).commit();
                     return true;
@@ -65,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, new LobbyFragment()).commit();
                     return true;
                 default:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new ImageFragment()).commit();
                     return true;
             }
         });

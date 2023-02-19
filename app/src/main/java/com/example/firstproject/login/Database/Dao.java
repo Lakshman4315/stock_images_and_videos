@@ -1,6 +1,8 @@
 package com.example.firstproject.login.Database;
 
 
+import android.net.Uri;
+
 import androidx.lifecycle.LiveData;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -37,6 +39,9 @@ public interface Dao {
 
     @Query("UPDATE user SET PASSWORD =:pass where EMAIL =:oldEmail")
     void updateUserPass(String oldEmail,String pass);
+
+    @Query("UPDATE user SET PROFILE_URI =:uri where EMAIL =:email")
+    void updateUserProfile(String email, String uri);
 
     @Insert
     void insert(model data);

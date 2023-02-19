@@ -2,19 +2,19 @@ package com.example.firstproject.ImageView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +28,6 @@ import com.example.firstproject.ImageView.Adapters.TopRecyclerViewAdapter;
 import com.example.firstproject.ImageView.Model.ImageRecyclerVIewModel;
 import com.example.firstproject.ImageView.Model.TopRecyclerViewModel;
 import com.example.firstproject.R;
-import com.google.android.material.appbar.MaterialToolbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,12 +40,11 @@ public class ImageFragment extends Fragment {
     private ImageRecyclerViewAdapter imageRecyclerViewAdapter;
     private TopRecyclerViewAdapter topRecyclerViewAdapter;
     private ArrayList<TopRecyclerViewModel> myButtonNameArray;
-    private Context context;
-    private MaterialToolbar materialToolbar;
 
     String valueOfq;
 
-    public ImageFragment(){}
+    public ImageFragment(){
+    }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
@@ -57,38 +55,22 @@ public class ImageFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getArguments() != null){
-            valueOfq  = getArguments().getString("buttonString","");
+            valueOfq  = getArguments().getString("buttonString");
         }else{
             valueOfq = "";
         }
         Log.d("data",valueOfq);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(getArguments() != null){
-            valueOfq  = getArguments().getString("buttonString","");
-        }
-    }
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.actionbar_menu,menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("NotifyDataSetChanged")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        int orientation = getResources().getConfiguration().orientation;
         View view = inflater.inflate(R.layout.fragment_image, container, false);
 
-        materialToolbar = view.findViewById(R.id.imageViewToolBar);
-        AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
-        assert appCompatActivity != null;
-        appCompatActivity.setSupportActionBar(materialToolbar);
-//        appCompatActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         myButtonNameArray = new ArrayList<>();
 
@@ -96,16 +78,21 @@ public class ImageFragment extends Fragment {
 
         RecyclerView myTopRecyclerView = view.findViewById(R.id.topRecyclerView);
         myTopRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL, false));
+
+        int gridColumnCount=1;
+        if(orientation == Configuration.ORIENTATION_LANDSCAPE){
+            myTopRecyclerView.setVisibility(View.GONE);
+            gridColumnCount = 2;
+        }
+
         myTopRecyclerView.setAdapter(topRecyclerViewAdapter);
         myTopRecyclerView.setHasFixedSize(false);
 
         initializationTopRecyclerViewData();
 
-
-
         RecyclerView recyclerView = view.findViewById(R.id.imageRecyclerView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),gridColumnCount));
         ImageUrlArray = new ArrayList<>();
         imageRecyclerViewAdapter = new ImageRecyclerViewAdapter(getContext(), ImageUrlArray);
         recyclerView.setAdapter(imageRecyclerViewAdapter);

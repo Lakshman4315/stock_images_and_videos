@@ -47,12 +47,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         myPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
-        if(myPreferences.getBoolean(LOGGED_IN, false)){
-            Intent intent = new Intent(this,MainActivity.class);
-            startActivity(intent);
-            updateLoginSharedCache(); 
-            finish();
-        }
 
         userPreferences = getSharedPreferences(userSharedPrefFile, MODE_PRIVATE);
 

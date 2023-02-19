@@ -66,10 +66,10 @@ public class TopRecyclerViewAdapter extends RecyclerView.Adapter<TopRecyclerView
                 bundle.putString("buttonString",mButton.getText().toString());
                 imageFragment.setArguments(bundle);
 
-                if(itemView.getContext() instanceof MainActivity){
-                    ((MainActivity)itemView.getContext()).getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container , new ImageFragment()).commit();
-                }
+//                if(itemView.getContext() instanceof MainActivity){
+//                    ((MainActivity)itemView.getContext()).getSupportFragmentManager().beginTransaction()
+//                            .replace(R.id.container , new ImageFragment()).commit();
+//                }
 
 
             });

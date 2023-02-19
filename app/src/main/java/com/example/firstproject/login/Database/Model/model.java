@@ -1,5 +1,7 @@
 package com.example.firstproject.login.Database.Model;
 
+import android.net.Uri;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -22,6 +24,9 @@ public class model {
 
     @ColumnInfo(name = "PASSWORD")
     String password;
+
+    @ColumnInfo(name = "PROFILE_URI")
+    String uri;
 
 //    @Ignore
 //    model(int id,String username,String email,String phone_no,String password){
@@ -77,5 +82,13 @@ public class model {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 }

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.firstproject.ProfileActivity;
 import com.example.firstproject.R;
 import com.example.firstproject.login.Database.Dao;
 import com.example.firstproject.login.Database.Model.model;
@@ -69,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
                if (Patterns.PHONE.matcher(phone).matches()) {
                    if(pass.length()>=8){
                        dao.insert(new model(userName,Email,phone,pass));
-                       startActivity(new Intent(this,LoginActivity.class));
+                       startActivity(new Intent(this, ProfileActivity.class));
                        finish();
                    }else{
                        Toast.makeText(this,"Password Length Must Be Greater Than 8",Toast.LENGTH_SHORT).show();

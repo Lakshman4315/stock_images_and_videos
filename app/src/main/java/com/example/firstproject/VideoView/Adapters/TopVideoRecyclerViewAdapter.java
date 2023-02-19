@@ -9,11 +9,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.firstproject.ImageView.ImageFragment;
+import com.example.firstproject.MainActivity;
 import com.example.firstproject.R;
 import com.example.firstproject.VideoView.Model.TopVideoRecyclerViewModel;
+import com.example.firstproject.VideoView.VideoFragment;
 
 import java.util.ArrayList;
 
@@ -49,18 +53,33 @@ public class TopVideoRecyclerViewAdapter extends RecyclerView.Adapter<TopVideoRe
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final Button mButton;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mButton = itemView.findViewById(R.id.videoButton);
             mButton.setOnClickListener(view -> {
-//
-//                Bundle bundle = new Bundle();
-//                bundle.putString("buttonString",mButton.getText().toString());
-//                Log.d("key",bundle.getString("buttonString"));
-////                    new fragmentManager().
-//                ImageFragment imageFragment = new ImageFragment();
-//                imageFragment.apiCall(bundle.getString("buttonString"), view.getContext());
 
+//                VideoFragment videoFragment = new VideoFragment();
+//                Bundle bundle = new Bundle();
+//                bundle.putString("VALUE_OF_Q",mButton.getText().toString());
+//                videoFragment.setArguments(bundle);
+//
+//                if(itemView.getContext() instanceof MainActivity){
+//                    ((MainActivity)itemView.getContext()).getSupportFragmentManager().beginTransaction()
+//                            .replace(R.id.container , new VideoFragment()).commit();
+//                }
+//                ((VideoFragment) Fragment).searchVideos(mButton.getText().toString());
+
+//                new VideoFragment().searchVideos(mButton.getText().toString());
+
+                if(itemView.getContext() instanceof MainActivity){
+                    MainActivity mainActivity = (MainActivity) itemView.getContext();
+                    FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
+                    VideoFragment videoFragment = (VideoFragment) fragmentManager
+                            .findFragmentByTag("VideoFragment");
+                    assert videoFragment != null;
+                    videoFragment.searchVideos(mButton.getText().toString());
+                }
 
             });
         }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- drawable/ellipse_1.xml -->
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="173dp"
+    android:height="162dp"
+    android:viewportWidth="173"
+    android:viewportHeight="162"
+    >
+
+    <group>
+
+        <clip-path
+            android:pathData="M173 81C173 125.735 134.273 162 86.5 162C38.7274 162 0 125.735 0 81C0 36.2649 38.7274 0 86.5 0C134.273 0 173 36.2649 173 81Z"
+            />
+
+        <path
+            android:pathData="M0 0V162H173V0"
+            android:fillColor="#FFFFFF"
+            />
+
+        <path
+            android:pathData="M173 81C173 125.735 134.273 162 86.5 162C38.7274 162 0 125.735 0 81C0 36.2649 38.7274 0 86.5 0C134.273 0 173 36.2649 173 81Z"
+            android:strokeWidth="4"
+            android:strokeColor="#000000"
+            />
+
+    </group>
+
+</vector>

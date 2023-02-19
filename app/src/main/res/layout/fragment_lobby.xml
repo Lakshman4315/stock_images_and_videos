@@ -13,13 +13,33 @@
         android:layout_height="200dp"
         android:backgroundTint="#363638">
 
-        <ImageView
-            android:id="@+id/profileDP"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:background="@drawable/image_round_corner"
-            android:src="@mipmap/ic_launcher"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            app:cardCornerRadius="200dp"
+            app:strokeWidth="10dp"
+            app:strokeColor="@color/black"
+            >
+            <ImageView
+                android:id="@+id/profileDP"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editProfile"
+            android:layout_marginTop="120dp"
+            android:layout_marginStart="220dp"
+            android:src="@drawable/ic_baseline_edit_24"
+            android:backgroundTint="@color/white"
+            app:backgroundTint="@color/black"
+            app:borderWidth="10dp"
+            />
+
 
     </com.google.android.material.card.MaterialCardView>
 
